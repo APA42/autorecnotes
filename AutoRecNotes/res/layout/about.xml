@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+        Copyright 2011 Alberto Perez Alonso
+ 
+        This file is part of AutoRecNotes.
+
+    AutoRecNotes is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    AutoRecNotes is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with AutoRecNotes.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+	<RelativeLayout	
+		xmlns:android="http://schemas.android.com/apk/res/android"	
+		android:orientation="vertical"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent" >
+		<TextView
+			android:id="@+id/About.Version"
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent" 
+			android:text="@string/About.Version"
+			android:textSize="14sp"
+			android:textStyle="bold"
+			android:paddingLeft="2sp">
+		</TextView>
+	 	<TextView
+			android:id="@+id/About.Version.Content"
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent" 
+			android:layout_below="@id/About.Version"
+			android:text="@string/About.Version.Content"
+			android:textSize="12sp"
+			android:paddingLeft="2sp">
+		</TextView>
+		<View
+			android:id="@+id/About.Divider1"
+			android:layout_width="fill_parent"		
+			android:layout_height="3dip"		
+			android:layout_below="@id/About.Version.Content"
+			android:layout_marginTop="5dp"		
+			android:layout_marginBottom="5dp"
+			android:background="@color/LimeGreen"/>
+	 	<TextView
+			android:id="@+id/About.Authors"
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent" 
+			android:text="@string/About.Authors"
+			android:layout_below="@id/About.Divider1"
+			android:textSize="14sp"
+			android:textStyle="bold"
+			android:paddingLeft="2sp">
+		</TextView>
+	 	<TextView
+			android:id="@+id/About.Authors.Content"
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent" 
+			android:layout_below="@id/About.Authors"
+			android:autoLink="email|web"
+			android:text="@string/About.Authors.Content"
+			android:textSize="12sp"
+			android:paddingLeft="2sp">
+		</TextView>
+		<View
+			android:id="@+id/About.Divider2"
+			android:layout_width="fill_parent"		
+			android:layout_height="3dip"		
+			android:layout_below="@id/About.Authors.Content"
+			android:layout_marginTop="5dp"		
+			android:layout_marginBottom="5dp"
+			android:background="@color/LimeGreen"/>
+		<TextView
+			android:id="@+id/About.License"
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent"
+			android:layout_below="@id/About.Divider2"
+			android:text="@string/About.License"
+			android:textStyle="bold"
+			android:textSize="14sp"
+			android:paddingLeft="2sp">
+		</TextView>
+		<TextView
+			android:id="@+id/About.License.Content"
+			android:layout_height="wrap_content"
+			android:layout_width="fill_parent"
+			android:layout_below="@id/About.License"
+			android:text="@string/About.License.Content"
+			android:autoLink="web"
+			android:textSize="12sp"
+			android:paddingLeft="2sp">
+		</TextView>
+	</RelativeLayout>
+</ScrollView>
