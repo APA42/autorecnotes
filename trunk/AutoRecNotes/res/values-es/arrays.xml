@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+        Copyright 2011 Alberto Perez Alonso
+ 
+        This file is part of AutoRecNotes.
+
+    AutoRecNotes is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    AutoRecNotes is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with AutoRecNotes.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+	<!-- ******* -->
+	<!-- SPANISH -->
+	<!-- ******* -->	
+<resources>
+	<string-array name="TimeRecoding_entries">
+		<item>10 segundos</item>
+		<item>15 segundos</item>
+		<item>20 segundos</item>
+		<item>25 segundos</item>
+		<item>30 segundos</item>
+		<item>35 segundos</item>
+		<item>40 segundos</item>
+	</string-array>
+	<string-array name="TimeRecoding_values">
+		<item>10000</item>
+		<item>15000</item>
+		<item>20000</item>
+		<item>25000</item>
+		<item>30000</item>
+		<item>35000</item>
+		<item>40000</item>
+	</string-array>
+</resources>
