@@ -19,6 +19,7 @@
 
 package com.apa42.autorecnotes;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -55,6 +56,7 @@ public class ServiceRecorder extends Service
 	private boolean _recording = false;
 		
 	private MediaRecorder _recorder = null;
+	private String _fileName = null;
 	MediaRecorder.OnErrorListener _recorderOnErrorListener = null;
 	MediaRecorder.OnInfoListener _recorderOnInfoListener = null;
 
@@ -117,7 +119,7 @@ public class ServiceRecorder extends Service
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "saveStateRecordingToPreferences("+recording+")" );
 		//
-    	PreferenceManager.setDefaultValues(getApplication(), R.xml.preferences, false);
+    	// It isn't necessary=> PreferenceManager.setDefaultValues(getApplication(), R.xml.preferences, false);
     	SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplication());
     	Editor editor = preferences.edit();
     	editor.putBoolean(ConfigAppValues.PREF_KEY_RECORDING_STATE_FOR_SERVICE, recording);
@@ -127,7 +129,7 @@ public class ServiceRecorder extends Service
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "getValuesFromPreferences()" );
 		//
-    	PreferenceManager.setDefaultValues(getApplication(), R.xml.preferences, false);
+    	// It isn't necessary=> PreferenceManager.setDefaultValues(getApplication(), R.xml.preferences, false);
     	SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplication());
     	String aux = preferences.getString(ConfigAppValues.PREF_KEY_TIMETORECORD_LIST, ConfigAppValues.PREF_KEY_TIMETORECORD_LIST_DEFAULT_VALUE);
     	try
@@ -184,6 +186,8 @@ public class ServiceRecorder extends Service
 		_timeRecording = 0;
 		// Set the timer
 		_timer = new Timer();
+		// Set null to file Name
+		_fileName = null;
 		
 		if ( prepareMediaRecorder() )
 		{
@@ -269,8 +273,8 @@ public class ServiceRecorder extends Service
 			return returned;
 		//
     	DateFormat fileNameDateFormat = new SimpleDateFormat(getResources().getString(R.string.filenameformat));
-    	String fileName = Utils.givePathToStorage(this);
-    	fileName += ConfigAppValues.DOUBLE_SLASH;
+    	_fileName = Utils.givePathToStorage(this);
+    	_fileName += ConfigAppValues.DOUBLE_SLASH;
     	try
     	{
     		if (null == _recorder)
@@ -319,9 +323,9 @@ public class ServiceRecorder extends Service
 	    	if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "==>setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);");
 	    	_recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);				
 
-	    	fileName += fileNameDateFormat.format(new Date()) + ConfigAppValues.FILE_EXTENSION;
-	    	if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "==>setOutputFile("+fileName+");");
-	    	_recorder.setOutputFile(fileName);
+	    	_fileName += fileNameDateFormat.format(new Date()) + ConfigAppValues.FILE_EXTENSION;
+	    	if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "==>setOutputFile("+_fileName+");");
+	    	_recorder.setOutputFile(_fileName);
  	    	
 	    	if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "==>Set done");
 	    	

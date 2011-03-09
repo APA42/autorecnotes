@@ -26,9 +26,10 @@
 	<string name="sd_storage_folder">AutoRecNotes</string>
     <string name="filenameformat">yyyy_MM_dd__HH_mm_ss</string>	  
     <!-- Main Activity -->
-    <string name="txt_btn_StartRecordNote">Start Record Note</string>
-    <string name="txt_btn_StopRecordNote">Stop Record Note</string>
+    <string name="txt_btn_StartRecordNote">Start Recording Note</string>
+    <string name="txt_btn_StopRecordNote">Stop Recording Note</string>
     <string name="txt_btn_ManageRecorderNotes">Manage Recorded Notes</string>
+    <string name="txt_btn_CancelRecordingNote">Cancel Recording Note</string>
     <!-- Preferences Activity -->
     <string name="Pref_Activity_Name">Settings</string>
     

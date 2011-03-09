@@ -28,13 +28,16 @@ import android.util.Log;
  */
 public class Utils
 {
+	// for logs
+	private static final String CLASS_NAME = "Utils";
+
 	/**
 	 * Check Media Storage Available and Writeable
 	 * @return true if ok, false if it's not available
 	 */
 	public static boolean checkMediaStorage()
 	{
-		if (ConfigAppValues.DEBUG) Log.d("Utils", "checkMediaStorage()" );
+		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "checkMediaStorage()" );
 		//
 		boolean returned = false;
 
@@ -48,7 +51,7 @@ public class Utils
 		}
 		catch(Exception e)
 		{
-			if (ConfigAppValues.DEBUG) Log.d("Utils", "FAIL=>checkMediaStorage(): " + e.getMessage());
+			if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "FAIL=>checkMediaStorage(): " + e.getMessage());
 			e.printStackTrace();			
 		}
 		return returned;
@@ -61,7 +64,7 @@ public class Utils
 	 */
 	public static String givePathToStorage(Context context)
 	{
-		if (ConfigAppValues.DEBUG) Log.d("Utils", "givePathToStorage(Context context)" );
+		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "givePathToStorage(Context context)" );
 		//
 		String returned = "";
 		if ( checkMediaStorage() )

@@ -54,6 +54,8 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 	private View.OnClickListener _btStopRecording_Listener = null;
 	private Button _btManageRecordedNotes = null;
 	private View.OnClickListener _btManageRecordedNotes_Listener = null;
+	private Button _btCancelRecording = null;
+	private View.OnClickListener _btCancelRecording_Listener = null;
 	// 
 	private boolean _comeBackFromPreferences = false;
 	private boolean _comebackFromManageRecordedNotes = false;
@@ -85,6 +87,7 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
         // Buttons
         _btStartRecording = (Button) findViewById(R.id.btn_StartRecording);
         _btStopRecording = (Button) findViewById(R.id.btn_StopRecording);
+        _btCancelRecording = (Button) findViewById(R.id.btn_CancelRecording);
         _btManageRecordedNotes = (Button) findViewById(R.id.btn_ManageRecorderNotes);
 
         // Listener
@@ -117,6 +120,21 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 			}
 		};
 		
+		_btCancelRecording_Listener = new View.OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				if (ConfigAppValues.DEBUG) Log.d(this.getClass().getName(), "_btCancelRecording_Listener::onClick()");
+		    	//
+		    	if (_recording)
+		    		cancelRecordingService();
+		    	else
+		    		if (ConfigAppValues.DEBUG) Log.d(this.getClass().getName(), "*** we're NOT recording=>nothing to do");
+			}
+		};
+
+		
 		_btManageRecordedNotes_Listener = new View.OnClickListener()
 		{
 			@Override
@@ -130,6 +148,7 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 		// Bind the listeners
 		_btStartRecording.setOnClickListener(_btStartRecording_Listener);
 		_btStopRecording.setOnClickListener(_btStopRecording_Listener);
+		_btCancelRecording.setOnClickListener(_btCancelRecording_Listener);
 		_btManageRecordedNotes.setOnClickListener(_btManageRecordedNotes_Listener);
 
 		// Bind UI Listener to Service
@@ -149,6 +168,10 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onDestroy()" );
     	//
+		
+		// UnBind UI Listener to Service
+		ServiceRecorder.setUpdateUIListener(null);
+		
 		// TODO Auto-generated method stub
 		super.onDestroy();
 	}
@@ -420,6 +443,13 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
         prepareUIForStopRecording();
 	}
 
+	private void cancelRecordingService()
+	{
+		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "cancelRecordingService()" );
+		//
+		// Change state with SharedPreferences
+		// Stop Service
+	}
 	
 	private void prepareUIForStarRecording()
 	{

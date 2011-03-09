@@ -21,13 +21,15 @@ package com.apa42.autorecnotes;
 
 public class ConfigAppValues
 {
-	public static final boolean DEBUG = false;
+	public static final boolean DEBUG = true;
 	// Preferences
 	public static final String PREF_KEY_ALWAYS_RECORD = "Pref_AlwaysRecord";	
 	public static final String PREF_KEY_TIMETORECORD_LIST = "Pref_TimeToRecord_List";
 	public static final String PREF_KEY_TIMETORECORD_LIST_DEFAULT_VALUE = "15000";
 	public static final String PREF_KEY_RECORDING_STATE_FOR_ACTIVITY = "Pref_Activity_Recording";
 	public static final String PREF_KEY_RECORDING_STATE_FOR_SERVICE = "Pref_Service_Recording";
+	// indicates to service that user cancel=>don't save the recorded note
+	public static final String PREF_KEY_USER_CANCEL_SERVICERECORDED = "Pref_USER_CANCEL_SERVICERECORDED";
 	// ActiviyForResult
 	public static final int TO_SHOW_PREFERENCES = 1;
 	public static final int TO_SHOW_MANAGE_RECORDED_NOTES = 2;

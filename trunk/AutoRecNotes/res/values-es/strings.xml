@@ -27,7 +27,8 @@
     <!-- Main Activity -->
     <string name="txt_btn_StartRecordNote">Grabar Nota</string>
     <string name="txt_btn_StopRecordNote">Parar de grabar Nota</string>
-	<string name="txt_btn_ManageRecorderNotes">Gestionar Notas Grabadas</string>    
+    <string name="txt_btn_CancelRecordingNote">Cancelar grabación Nota</string>
+    <string name="txt_btn_ManageRecorderNotes">Gestionar Notas Grabadas</string>
     <!-- Preferences Activity -->
     <string name="Pref_Activity_Name">Ajustes</string>
     
