@@ -406,7 +406,7 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 		if ( Utils.checkMediaStorage() )
 		{
 			_recording = true;
-			saveStateRecordingToPreferences(_recording);
+			saveStateToPreferences(ConfigAppValues.PREF_KEY_RECORDING_STATE_FOR_ACTIVITY, _recording);
 			// UI
 			prepareUIForStarRecording();
 			//
@@ -425,7 +425,7 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "stopRecordingService()" );
 		//
 		_recording = false;
-		saveStateRecordingToPreferences(_recording);
+		saveStateToPreferences(ConfigAppValues.PREF_KEY_RECORDING_STATE_FOR_ACTIVITY, _recording);
 		//
 		Intent svc = new Intent(this, ServiceRecorder.class);
         stopService(svc);
@@ -438,7 +438,7 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "stopRecording()" );
 		//
 		_recording = false;
-		saveStateRecordingToPreferences(_recording);
+		this.saveStateToPreferences(ConfigAppValues.PREF_KEY_RECORDING_STATE_FOR_ACTIVITY, _recording);
         //
         prepareUIForStopRecording();
 	}
@@ -448,7 +448,9 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "cancelRecordingService()" );
 		//
 		// Change state with SharedPreferences
+		this.saveStateToPreferences(ConfigAppValues.SERVICE_CANCELED_BY_THE_USER, true);
 		// Stop Service
+		stopRecordingService();
 	}
 	
 	private void prepareUIForStarRecording()
@@ -460,7 +462,9 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 		_progressBar.setVisibility(ProgressBar.VISIBLE);
 		// Clickable button
 		_btManageRecordedNotes.setEnabled(false);
-		_btStartRecording.setEnabled(false);		
+		_btStartRecording.setEnabled(false);
+		_btStopRecording.setEnabled(true);
+		_btCancelRecording.setEnabled(true);
 	}
 	
 	private void prepareUIForStopRecording()
@@ -472,6 +476,8 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 		// Clickable button
 		_btManageRecordedNotes.setEnabled(true);
 		_btStartRecording.setEnabled(true);
+		_btStopRecording.setEnabled(false);
+		_btCancelRecording.setEnabled(false);
 	}
 	
 	private void getValuesFromPreferences()
@@ -497,17 +503,18 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
     	_recording = preferences.getBoolean(ConfigAppValues.PREF_KEY_RECORDING_STATE_FOR_ACTIVITY, false);
     }
 	
-	private void saveStateRecordingToPreferences(boolean recording)
+	private void saveStateToPreferences(String stateString, boolean state)
 	{
-		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "saveStateRecordingToPreferences("+recording+")" );
+		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "saveStateToPreferences("+stateString+","+state+")" );
 		//
-    	PreferenceManager.setDefaultValues(getApplication(), R.xml.preferences, false);
+    	// It isn't necessary=> PreferenceManager.setDefaultValues(getApplication(), R.xml.preferences, false);
     	SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplication());
     	Editor editor = preferences.edit();
-    	editor.putBoolean(ConfigAppValues.PREF_KEY_RECORDING_STATE_FOR_ACTIVITY, recording);
-    	editor.commit();
+    	editor.putBoolean(stateString, state);
+    	editor.commit();		
 	}
 
+	
 	
 	/**
 	 * Check if the directory on the storage card exist. If doesn't exit automatically create it

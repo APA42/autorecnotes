@@ -86,11 +86,48 @@ public class ServiceRecorder extends Service
 		super.onDestroy();
 		
 		shutdown();
+		
+		// Check if user stops service or not=> From shared preferences
+		// I know it's not the best way but I use sharedPreferences for other communications
+		//
+		if ( getStateFromPreferences(ConfigAppValues.SERVICE_CANCELED_BY_THE_USER) )
+		{
+			// Have to delete file
+    		if ( null != _fileName )
+    		{
+    			// Check if can be delete
+    			if ( Utils.canDeleteFile(_fileName) )
+    			{
+    				File file = new File(_fileName);
+    				if ( file.delete() )
+    				{
+    					if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onDestroy()=>File Deleted" );
+    				}
+    				else
+    				{
+    					if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onDestroy()=>Can't delete file : " + _fileName);
+    				}	
+    			}
+    			else
+    			{
+    				if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onDestroy()=>Can't delete file : " + _fileName);
+    			}
+    		}
+    		// Change the state,don't care about if the file has been deleted or not
+    		saveStateToPreferences(ConfigAppValues.SERVICE_CANCELED_BY_THE_USER, false);
+		}
 	}
 
 	@Override
 	public void onStart(Intent intent, int startId)
 	{
+		// @@ VERY IMPORTANT
+		// -----------------
+		// This method is deprecated.
+		// Implement onStartCommand(Intent, int, int) instead.
+		// 
+		// See: http://developer.android.com/reference/android/app/Service.html#onStartCommand%28android.content.Intent,%20int,%20int%29
+		//
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onCreate()" );
 		//
 		// TODO Auto-generated method stub
@@ -115,16 +152,28 @@ public class ServiceRecorder extends Service
 	}
 	
 
-	private void saveStateRecordingToPreferences(boolean recording)
+	private void saveStateToPreferences(String stateString, boolean state)
 	{
-		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "saveStateRecordingToPreferences("+recording+")" );
+		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "saveStateToPreferences("+stateString+","+state+")" );
 		//
     	// It isn't necessary=> PreferenceManager.setDefaultValues(getApplication(), R.xml.preferences, false);
     	SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplication());
     	Editor editor = preferences.edit();
-    	editor.putBoolean(ConfigAppValues.PREF_KEY_RECORDING_STATE_FOR_SERVICE, recording);
-    	editor.commit();
+    	editor.putBoolean(stateString, state);
+    	editor.commit();		
 	}
+	
+	private boolean getStateFromPreferences(String stateString)
+	{
+		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "getStateFromPreferences("+stateString+")" );
+		//
+    	// It isn't necessary=> PreferenceManager.setDefaultValues(getApplication(), R.xml.preferences, false);
+    	SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplication());
+    	return preferences.getBoolean(stateString, false);
+	}
+	
+
+	
 	private void getValuesFromPreferences()
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "getValuesFromPreferences()" );
@@ -197,7 +246,7 @@ public class ServiceRecorder extends Service
 			{
 				// Start Recording				
 				_recording = true;
-				saveStateRecordingToPreferences(_recording);
+				saveStateToPreferences(ConfigAppValues.PREF_KEY_RECORDING_STATE_FOR_SERVICE,_recording);
 				_recorder.start();
 				// run
 				_timer.scheduleAtFixedRate(_timerTask, 0, _notificationPeriod);
@@ -242,7 +291,7 @@ public class ServiceRecorder extends Service
 			}
 			catch(IllegalStateException e)
 			{
-	    		if (ConfigAppValues.DEBUG) Log.e(this.getClass().getName(), "shutdown Stop Recorder FAILS: " + e.getMessage() );
+	    		if (ConfigAppValues.DEBUG) Log.e(CLASS_NAME, "shutdown Stop Recorder FAILS: " + e.getMessage() );
 				e.printStackTrace();
 			}
 		}
@@ -259,7 +308,7 @@ public class ServiceRecorder extends Service
 		
 		
 		_recording = false;
-		saveStateRecordingToPreferences(_recording);
+		saveStateToPreferences(ConfigAppValues.PREF_KEY_RECORDING_STATE_FOR_SERVICE, _recording);
 	}
 
 	
@@ -273,7 +322,7 @@ public class ServiceRecorder extends Service
 			return returned;
 		//
     	DateFormat fileNameDateFormat = new SimpleDateFormat(getResources().getString(R.string.filenameformat));
-    	_fileName = Utils.givePathToStorage(this);
+    	_fileName = Utils.giveMePathToStorage(this);
     	_fileName += ConfigAppValues.DOUBLE_SLASH;
     	try
     	{
@@ -337,17 +386,17 @@ public class ServiceRecorder extends Service
 	    }
     	catch(IllegalStateException e)
     	{
-    		if (ConfigAppValues.DEBUG) Log.e(this.getClass().getName(), "IllegalStateException->FAIL: " + e.getMessage() );
+    		if (ConfigAppValues.DEBUG) Log.e(CLASS_NAME, "IllegalStateException->FAILS: " + e.getMessage() );
 			e.printStackTrace();
     	}
     	catch (IOException e)
 		{
-    		if (ConfigAppValues.DEBUG) Log.e(this.getClass().getName(), "IOException->FAIL: " + e.getMessage() );
+    		if (ConfigAppValues.DEBUG) Log.e(CLASS_NAME, "IOException->FAILS: " + e.getMessage() );
 			e.printStackTrace();
 		}
     	catch(Exception e)
     	{
-    		if (ConfigAppValues.DEBUG) Log.e(this.getClass().getName(), "Exception->FAIL: " + e.getMessage() );
+    		if (ConfigAppValues.DEBUG) Log.e(CLASS_NAME, "Exception->FAILS: " + e.getMessage() );
 			e.printStackTrace();
     	}
     	
