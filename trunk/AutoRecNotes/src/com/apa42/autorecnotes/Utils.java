@@ -62,7 +62,7 @@ public class Utils
 	 * @param context To get resources
 	 * @return Path to the directory where storage the recorded notes
 	 */
-	public static String givePathToStorage(Context context)
+	public static String giveMePathToStorage(Context context)
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "givePathToStorage(Context context)" );
 		//
@@ -74,4 +74,32 @@ public class Utils
 		}
 		return returned;
 	}
+	
+	/**
+	 * @param fileAbsoluteName Absolute Path to the file wants to be deleted
+	 * @return true or false indicates if file can be deleted
+	 */
+	public static boolean canDeleteFile(String fileAbsoluteName)
+	{
+		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "canDeleteFile(" + fileAbsoluteName + ")");
+
+		boolean returned = false;
+		
+		try
+		{
+			if (Utils.checkMediaStorage())
+			{
+				SecurityManager sm = new SecurityManager();
+				sm.checkDelete(fileAbsoluteName);
+				returned = true;
+			}
+		}
+		catch(SecurityException e)
+		{
+			if (ConfigAppValues.DEBUG) Log.e(CLASS_NAME,  "canDeleteFile(" + fileAbsoluteName + ")");
+			e.printStackTrace();			
+		}
+		return returned;
+	}
+	
 }

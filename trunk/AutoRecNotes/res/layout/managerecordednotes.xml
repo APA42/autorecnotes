@@ -25,7 +25,7 @@
   	<ListView android:id="@id/android:list"
     	android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:dividerHeight="1sp"
+        android:dividerHeight="2sp"
         android:drawSelectorOnTop="false">
   	</ListView>
 	<TextView android:id="@id/android:empty"

@@ -28,8 +28,6 @@ public class ConfigAppValues
 	public static final String PREF_KEY_TIMETORECORD_LIST_DEFAULT_VALUE = "15000";
 	public static final String PREF_KEY_RECORDING_STATE_FOR_ACTIVITY = "Pref_Activity_Recording";
 	public static final String PREF_KEY_RECORDING_STATE_FOR_SERVICE = "Pref_Service_Recording";
-	// indicates to service that user cancel=>don't save the recorded note
-	public static final String PREF_KEY_USER_CANCEL_SERVICERECORDED = "Pref_USER_CANCEL_SERVICERECORDED";
 	// ActiviyForResult
 	public static final int TO_SHOW_PREFERENCES = 1;
 	public static final int TO_SHOW_MANAGE_RECORDED_NOTES = 2;
@@ -41,5 +39,6 @@ public class ConfigAppValues
 	public static final String FILE_EXTENSION = ".3GP";
 	// Service Stop Message
 	public static final int SERVICE_RECORDER_STOP_NOMEDIARECORDER = -42;
-
+	// User cancel recording note service=>don't save the recordednote
+	public static final String SERVICE_CANCELED_BY_THE_USER = "SERVICE_CANCELED_BY_THE_USER";
 }

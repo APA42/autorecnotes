@@ -25,13 +25,18 @@
     	android:id="@+id/ImageRecordedNote"
     	android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
-    	android:src="@drawable/ic_recordednote">
+    	android:src="@drawable/ic_recordednote"
+    	android:paddingTop="4sp"
+    	android:paddingBottom="4sp">
     </ImageView>
  	<TextView 
  		android:id="@+id/TextRecordedNote"
     	android:layout_width="fill_parent"
     	android:layout_height="fill_parent"
     	android:textSize="18sp"
-    	android:textColor="@color/LimeGreen">
+    	android:textColor="@color/LimeGreen"
+    	android:paddingTop="4sp"
+    	android:paddingBottom="4sp"
+    	android:paddingLeft="2sp">
 	</TextView>
 </LinearLayout>

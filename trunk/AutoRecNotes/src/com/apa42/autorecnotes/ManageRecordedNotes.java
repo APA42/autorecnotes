@@ -147,9 +147,42 @@ public class ManageRecordedNotes extends ListActivity
 	/* Internal Functionalities */
 	/****************************/
 	
+	private String removeFileNameExtension(String fileName)
+	{
+		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "removeFileNameExtension("+fileName+")");
+		//
+		String returned = null;
+		try
+		{
+			if ( fileName.endsWith(ConfigAppValues.FILE_EXTENSION) )
+			{
+				//returned = fileName.replace(ConfigAppValues.FILE_EXTENSION, "");
+				int pos = fileName.indexOf(ConfigAppValues.FILE_EXTENSION);
+				if ( -1 != pos )
+				{
+					returned = fileName.substring(0, pos);
+				}
+			}
+		}
+		catch(NullPointerException 	e)
+		{
+			if (ConfigAppValues.DEBUG) Log.e(CLASS_NAME, "NullPointerException->FAILS: " + e.getMessage() );
+			e.printStackTrace();				
+		}
+		catch (IndexOutOfBoundsException e)
+		{
+			if (ConfigAppValues.DEBUG) Log.e(CLASS_NAME, "IndexOutOfBoundsException->FAILS: " + e.getMessage() );
+			e.printStackTrace();				
+		}
+
+		return returned;
+	}
+	
 	private void fillListWithRecordedNotes()
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "fillListWithRecordedNotes()");
+		
+		String auxFileName = null;
 		
 		// Clear old data
 	    if ( null != _recordedNotesList )
@@ -160,14 +193,18 @@ public class ManageRecordedNotes extends ListActivity
 	    try
 	    {
 		    // Read the storage card
-			File[] arrayFileRecordedNotes = new File(Utils.givePathToStorage(this)).listFiles();
+			File[] arrayFileRecordedNotes = new File(Utils.giveMePathToStorage(this)).listFiles();
 			if (null != arrayFileRecordedNotes )
 			{
 				for (File file : arrayFileRecordedNotes)
 				{
-			        // Right now, we apply the same image to every recorded note
-					RecordedNote recordedNote = new RecordedNote(file.getName(),null);
-					_recordedNotesList.add(recordedNote);
+					auxFileName = removeFileNameExtension( file.getName() );
+					if (null != auxFileName )
+					{
+				        // Right now, we apply the same image to every recorded note						
+						RecordedNote recordedNote = new RecordedNote(auxFileName,null);
+						_recordedNotesList.add(recordedNote);
+					}
 				}
 			}
 	    }
@@ -321,7 +358,7 @@ public class ManageRecordedNotes extends ListActivity
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "renameRecordedNoteFileName(" + indexRecordedNote + ","+ newName + ")");
 		
-		// Check doesn't exist
+		// Check doesn't exist and don't end with file extension
 		// File.renameTo doesn't throw exception if name are the same...
 		if ( newName.length() > 0 )
 		{
@@ -329,6 +366,12 @@ public class ManageRecordedNotes extends ListActivity
 			if ( ((RecordedNotesListAdapter)this.getListAdapter()).contains(recordedNote_Aux) )
 			{
 				Toast.makeText(getApplicationContext(), getResources().getString(R.string.RENAME_NEWNAME_EXIST), Toast.LENGTH_SHORT).show();
+				renameDialog(indexRecordedNote);
+				return;
+			}
+			else if ( newName.endsWith(ConfigAppValues.FILE_EXTENSION) )
+			{
+				Toast.makeText(getApplicationContext(), getResources().getString(R.string.RENAME_NO_VALID_NAME), Toast.LENGTH_SHORT).show();
 				renameDialog(indexRecordedNote);
 				return;
 			}
@@ -343,13 +386,12 @@ public class ManageRecordedNotes extends ListActivity
 		// Try to rename
 		if (Utils.checkMediaStorage())
 		{
-			String fileName = Utils.givePathToStorage(this);
-	    	fileName += ConfigAppValues.DOUBLE_SLASH;
-	    	fileName += ((RecordedNote)this.getListAdapter().getItem((int)indexRecordedNote)).getFileName();
+			String fileName = this.giveFileNameAndPath(indexRecordedNote);
 	    	
-	    	String newFileName = Utils.givePathToStorage(this);
+	    	String newFileName = Utils.giveMePathToStorage(this);
 	    	newFileName += ConfigAppValues.DOUBLE_SLASH;
-	    	newFileName += newName; 
+	    	newFileName += newName;
+	    	newFileName += ConfigAppValues.FILE_EXTENSION;
 	
 			File file = new File(fileName);
 			File newFile = new File(newFileName);
@@ -435,7 +477,7 @@ public class ManageRecordedNotes extends ListActivity
 		//
 		String fileName = giveFileNameAndPath(indexRecordedNote);
 		// Check if can be delete
-		if ((fileName.length() > 0) && canDeleteFile(fileName))
+		if ((fileName.length() > 0) && Utils.canDeleteFile(fileName))
 		{
 			File file = new File(fileName);
 			if ( file.delete() )
@@ -504,41 +546,17 @@ public class ManageRecordedNotes extends ListActivity
 	}
 
 
-	private boolean canDeleteFile(String fileAbsoluteName)
-	{
-		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "canDeleteFile(" + fileAbsoluteName + ")");
-
-		boolean returned = false;
-		
-		try
-		{
-			if (Utils.checkMediaStorage())
-			{
-				SecurityManager sm = new SecurityManager();
-				sm.checkDelete(fileAbsoluteName);
-				returned = true;
-			}
-		}
-		catch(SecurityException e)
-		{
-			if (ConfigAppValues.DEBUG) Log.e(CLASS_NAME,  "canDeleteFile(" + fileAbsoluteName + ")");
-			e.printStackTrace();			
-		}
-		return returned;
-	}
-	
-
 	private String giveFileNameAndPath(long indexRecordedNote)
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "giveFileNameAndPath(" + indexRecordedNote +")");
 		//
-		String fileName = Utils.givePathToStorage(this);
+		String fileName = Utils.giveMePathToStorage(this);
 		if (fileName.length() > 0 )
 		{
 			fileName += ConfigAppValues.DOUBLE_SLASH;
 			fileName += ((RecordedNote)this.getListAdapter().getItem((int)indexRecordedNote)).getFileName();
+			fileName += ConfigAppValues.FILE_EXTENSION;
 		}
 		return fileName;
 	}
-	
 }
