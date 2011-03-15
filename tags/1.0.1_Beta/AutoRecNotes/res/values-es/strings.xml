@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+        Copyright 2011 Alberto Perez Alonso
+ 
+        This file is part of AutoRecNotes.
+
+    AutoRecNotes is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    AutoRecNotes is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with AutoRecNotes.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	<!-- ******* -->
+	<!-- SPANISH -->
+	<!-- ******* -->	
+	<string name="app_name">AutoRecNotes</string>
+	<string name="sd_storage_folder">AutoRecNotes</string>
+    <string name="filenameformat">yyyy_MM_dd__HH_mm_ss</string>	  
+    <!-- Main Activity -->
+    <string name="txt_btn_StartRecordNote">Grabar Nota</string>
+    <string name="txt_btn_StopRecordNote">Parar de grabar Nota</string>
+    <string name="txt_btn_CancelRecordingNote">Cancelar grabación Nota</string>
+    <string name="txt_btn_ManageRecorderNotes">Gestionar Notas Grabadas</string>
+    <!-- Preferences Activity -->
+    <string name="Pref_Activity_Name">Ajustes</string>
+    
+    <string name="Pref_Category_StartupRecord">Grabar al iniciar</string>
+    <string name="Pref_StartupRecord_Title_AlwaysRecord">Siempre grabar?</string>
+    <string name="Pref_StartupRecord_Summary_AlwaysRecord">Cada vez que arranca la aplicación se graba una nota automáticamente</string>
+
+    <string name="Pref_Category_TimeToRecord">Tiempo de grabación</string>
+    <string name="Pref_TimeToRecord_Title">Tiempo a grabar</string>
+   	<string name="Pref_TimeToRecord_Summary">Seleccione un tiempo de grabación</string>
+   	<string name="Pref_TimeToRecord_Dialog_Title">Seleccione un periodo de tiempo</string> 
+    <!-- Manage Recorded Notes Activity -->
+    <string name="ManageRecordedNotes">Gestionar Notas Grabadas</string>
+	<string name="txt_no_recorded_notes">No hay notas grabadas</string>
+	<string name="TitleRename">Renombrar</string>	
+    <!-- For Sending eMail -->
+    <string name="email_subject">¡¡ Recuerda !!</string>
+    <string name="email_content">Recuerda escuchar esta nota grabada\n\nPista: Si no puedes reproducir el fichero, prueba renombrando la extensión a mp3</string>
+    <!-- Context Menu for List Items -->
+    <string name="ct_menu_ManageRecordedNotes_HeaderTitle">Seleccione una opción</string>    
+    <string name="ct_menu_ManageRecordedNotes_Play">Reproducir</string>
+    <string name="ct_menu_ManageRecordedNotes_Delete">Borrar</string>
+    <string name="ct_menu_ManageRecordedNotes_Rename">Renombrar</string>
+    <string name="ct_menu_ManageRecordedNotes_Share">Compartir</string>
+    <!-- Menus -->
+	<string name="txt_menu_manage_notes">Gestionar notas grabadas</string>
+	<string name="txt_menu_preferences">Ajustes</string>
+	<string name="txt_menu_about">Acerca de</string>
+  	<!-- Generals -->
+    <string name="yes">Sí</string>
+    <string name="no">No</string>	
+	<!-- Messages to User -->
+	<string name="RECORDING">Grabando, opción no disponible actualmente</string>
+    <string name="NO_ACCESS_TO_SD">Tarjeta de almacenamiento no está disponible</string>
+    <string name="DELETE_TITLE_MSG">Borrar</string>
+    <string name="DELETE_CONFIRMATION">¿Está seguro que quiere borrar la Nota?</string>
+    <string name="DELETE">Borrada</string>
+	<string name="DELETE_ERROR">No se ha podido borrar</string>
+	<string name="RENAME_TITLE_MSG">Renombrar</string>
+    <string name="RENAME_ERROR">No se ha podido renombrar la nota</string>
+	<string name="RENAME_NEWNAME_EXIST">Ya existe</string>
+	<string name="RENAME_NO_VALID_NAME">Nuevo nombre no es válido</string>
+    <!-- About -->
+    <string name="AboutActivity">Acerca de... AutoRecNotes</string>
+    <string name="About.Version">Versión</string>
+    <string name="About.Version.Content"></string>
+	<string name="About.Authors">Autores</string>
+	<string name="About.Authors.Content"><b><i>Developer</i></b>\n\tAlberto Perez\talberto.p.42@gmail.com
+	\n\thttp://www.apa42.com
+	\n<b><i>Icons Design</i></b>\n\tJavier Pastor\tj.pastor.garcia@hotmail.com
+	\n\thttp://www.wix.com/jarjurland/javierpastorgrafico</string>
+    <string name="About.License">Licencia</string>
+    <string name="About.License.Content">AutoRecNotes es FLOSS (Free Libre Open Source Software) y se distribuye bajo licencia GNU GPLv3
+    									\n\t\thttp://www.gnu.org/licenses/gpl.html
+    									\n\n</string>
+</resources>
