@@ -8,9 +8,9 @@
 * versionCode = 2          *
 * versionName = 1.0.1 Beta *
 ****************************
-+) Add a cancel button => App doesn't save the Recorded Note File
-+) Don't show file extension .3GP at ManagedRecordedNote 
-+) UI changes (icons and some activities layout)
++) Add a cancel button. App doesn't save the Recorded Note File.
++) Don't show file extension .3GP at Manage Recorded Notes Activity.  
++) UI little changes (icons and some activities layout).
 
 
 ***************
