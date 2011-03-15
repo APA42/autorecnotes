@@ -37,6 +37,6 @@
     	android:textColor="@color/LimeGreen"
     	android:paddingTop="4sp"
     	android:paddingBottom="4sp"
-    	android:paddingLeft="2sp">
+    	android:paddingLeft="6sp">
 	</TextView>
 </LinearLayout>

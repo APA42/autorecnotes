@@ -21,7 +21,7 @@ package com.apa42.autorecnotes;
 
 public class ConfigAppValues
 {
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 	// Preferences
 	public static final String PREF_KEY_ALWAYS_RECORD = "Pref_AlwaysRecord";	
 	public static final String PREF_KEY_TIMETORECORD_LIST = "Pref_TimeToRecord_List";
