@@ -73,7 +73,7 @@ public class ServiceRecorder extends Service
 	public void onCreate()
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onCreate()" );
-		// TODO Auto-generated method stub
+
 		super.onCreate();
 	}
 
@@ -82,7 +82,7 @@ public class ServiceRecorder extends Service
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onCreate()" );
 		//
-		// TODO Auto-generated method stub
+
 		super.onDestroy();
 		
 		shutdown();
@@ -130,7 +130,6 @@ public class ServiceRecorder extends Service
 		//
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onCreate()" );
 		//
-		// TODO Auto-generated method stub
 		super.onStart(intent, startId);
 		
 		//

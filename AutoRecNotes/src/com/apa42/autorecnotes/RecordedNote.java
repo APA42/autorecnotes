@@ -73,10 +73,7 @@ public class RecordedNote implements Comparable<RecordedNote>
 		
 		// Equals by its name
 		RecordedNote aux = (RecordedNote) o;
-		return this._fileName.equals(aux.getFileName());
-		
-		// TODO Auto-generated method stub
-		//return super.equals(o);
+		return this._fileName.equals(aux.getFileName());		
 	}
 
 }
