@@ -55,7 +55,6 @@ public class ManageRecordedNotes extends ListActivity
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onCreate(Bundle savedInstanceState)" );
 		//
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.managerecordednotes);
@@ -84,7 +83,6 @@ public class ManageRecordedNotes extends ListActivity
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onCreateContextMenu(ContextMenu menu, View v,ContextMenuInfo menuInfo)");
 		//
-		// TODO Auto-generated method stub
 		super.onCreateContextMenu(menu, v, menuInfo);
 		//
 		MenuInflater inflater = getMenuInflater();
@@ -98,10 +96,7 @@ public class ManageRecordedNotes extends ListActivity
 	protected void onListItemClick(ListView l, View v, int position, long id)
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onListItemClick(ListView l, View v, int position, long id)");
-		
-		// TODO Auto-generated method stub
-		//super.onListItemClick(l, v, position, id);
-		
+				
 		// Default option. Not a long press, only one click
 		// Play the note
 		this.playRecordedNote(position);		

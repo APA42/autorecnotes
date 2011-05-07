@@ -159,20 +159,16 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 	protected void onStart()
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onStart()" );
-		// TODO Auto-generated method stub
-		super.onStart();
 		//
+		super.onStart();
 	}
 	@Override
 	protected void onDestroy()
 	{
-		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onDestroy()" );
-    	//
-		
+		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onDestroy()" );		
 		// UnBind UI Listener to Service
 		ServiceRecorder.setUpdateUIListener(null);
 		
-		// TODO Auto-generated method stub
 		super.onDestroy();
 	}
 
@@ -181,7 +177,6 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onPause()" );
     	//
-		// TODO Auto-generated method stub
 		super.onPause();
 	}
 
@@ -190,7 +185,6 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onRestart()" );
     	//
-		// TODO Auto-generated method stub
 		super.onRestart();
 	}
 
@@ -199,7 +193,6 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onRestoreInstanceState(Bundle savedInstanceState)" );
     	//
-		// TODO Auto-generated method stub
 		super.onRestoreInstanceState(savedInstanceState);
 	}
 
@@ -208,7 +201,6 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onSaveInstanceState(Bundle outState)" );
     	//
-		// TODO Auto-generated method stub
 		super.onSaveInstanceState(outState);
 	}
 
@@ -217,7 +209,6 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onStop()" );
     	//
-		// TODO Auto-generated method stub
 		super.onStop();
 	}
 
@@ -227,7 +218,6 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 	{	
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onConfigurationChanged(Configuration newConfig)");
 		//
-		// TODO Auto-generated method stub
 		super.onConfigurationChanged(newConfig);
 	}
 
@@ -235,8 +225,7 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 	protected void onResume()
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onResume()" );
-
-		// TODO Auto-generated method stub
+		//
     	super.onResume();
     	
 		//
@@ -273,9 +262,6 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 	{
     	if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onCreateOptionsMenu(Menu menu)");
 
-    	// TODO Auto-generated method stub
-		//return super.onCreateOptionsMenu(menu);
-
     	// Create menu from resources
     	boolean returned = false;
     	try
@@ -296,9 +282,6 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onOptionsItemSelected(MenuItem item)");
-
-		// TODO Auto-generated method stub
-		//return super.onOptionsItemSelected(item);
 
 		// If recording => don't pass to other activity, specialty to Preferences
 		boolean returned = false;
@@ -332,8 +315,7 @@ public class AutoRecNotes extends Activity implements ServiceRecorderUIUpdateLis
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
 		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onActivityResult(int requestCode, int resultCode, Intent data)");
-
-		// TODO Auto-generated method stub
+		//
 		super.onActivityResult(requestCode, resultCode, data);
 		
 		// Not necessary in this case=>  Bundle extras = data.getExtras();
