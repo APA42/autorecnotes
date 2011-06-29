@@ -44,6 +44,8 @@
     <string name="ManageRecordedNotes">Gestionar Notas Grabadas</string>
 	<string name="txt_no_recorded_notes">No hay notas grabadas</string>
 	<string name="TitleRename">Renombrar</string>	
+	<!-- RecordedNote Player Activity -->
+	<string name="RecordedNotePlayer">AutoRecNotes: Reproductor</string>
     <!-- For Sending eMail -->
     <string name="email_subject">¡¡ Recuerda !!</string>
     <string name="email_content">Recuerda escuchar esta nota grabada\n\nPista: Si no puedes reproducir el fichero, prueba renombrando la extensión a mp3</string>

@@ -44,6 +44,8 @@
     <!-- Manage Recorded Notes Activity -->
     <string name="ManageRecordedNotes">Manage Recorded Notes</string>    
     <string name="txt_no_recorded_notes">There are no Recorded Notes</string>
+	<!-- RecordedNote Player Activity -->
+	<string name="RecordedNotePlayer">AutoRecNotes: Player</string>
     <!-- For Sending eMail -->
     <string name="email_subject">¡¡ Remember !!</string>
     <string name="email_content">Remember to listen this recorded note\n\nTip: If can\'t play the file, try to rename file extension to mp3</string>
