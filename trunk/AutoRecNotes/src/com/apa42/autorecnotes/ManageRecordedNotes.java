@@ -244,11 +244,14 @@ public class ManageRecordedNotes extends ListActivity
 			
 			if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "playRecordedNote==>uri data: " + data);
 			
-			Intent iplayIntent = new Intent(android.content.Intent.ACTION_VIEW);
-			iplayIntent.setDataAndType(data,"audio/mp3");
+			//Intent iplayIntent = new Intent(android.content.Intent.ACTION_VIEW);
+			//iplayIntent.setDataAndType(data,"audio/mp3");
+			Intent iplayerIntent = new Intent(ManageRecordedNotes.this,RecordedNotePlayer.class);
+			iplayerIntent.setData(data);
+			
 			try
 			{
-				startActivity(iplayIntent);
+				startActivity(iplayerIntent);
 			}
 			catch (ActivityNotFoundException e) 
 			{
