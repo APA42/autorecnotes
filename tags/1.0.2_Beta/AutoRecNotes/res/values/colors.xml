@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+        Copyright 2011 Alberto Perez Alonso
+ 
+        This file is part of AutoRecNotes.
+
+    AutoRecNotes is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    AutoRecNotes is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with AutoRecNotes.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<resources>
+	<!--  Colors ProgressBar red -->
+	<color name="redProgressBarStart">#ff0000</color>
+	<color name="redProgressBarMid">#ff0000</color>
+	<color name="redProgressBarEnd">#ff0000</color>
+	<!-- Colors ProgressBar Green Android -->
+	<color name="androidgreenProgressBarStart">#A4C639</color>
+	<color name="androidgreenProgressBarMid">#A4C639</color>
+	<color name="androidgreenProgressBarEnd">#A4C639</color>	
+	<!--  Color code get from  http://www.ceveni.com/2009/08/set-rgb-color-codes-for-android-and-rgb.html -->
+	<color name="LimeGreen">#32cd32</color>
+	<color name="AndroidGreen">#A4C639</color>
+</resources>

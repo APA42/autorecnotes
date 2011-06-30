@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+        Copyright 2011 Alberto Perez Alonso
+ 
+        This file is part of AutoRecNotes.
+
+    AutoRecNotes is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    AutoRecNotes is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with AutoRecNotes.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!-- IMPORTANT -->
+<!--  PreferenceActivity change for HONEYCOMB -->
+<PreferenceScreen
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:key="fist_preference_page">
+    <PreferenceCategory
+    	android:title="@string/Pref_Category_StartupRecord">
+    	<CheckBoxPreference
+    		android:key="Pref_AlwaysRecord"
+    		android:title="@string/Pref_StartupRecord_Title_AlwaysRecord"
+    		android:summary="@string/Pref_StartupRecord_Summary_AlwaysRecord" 
+    		android:defaultValue="false">
+    	</CheckBoxPreference>
+    </PreferenceCategory>
+    <PreferenceCategory
+    	android:title="@string/Pref_Category_TimeToRecord">
+    	<ListPreference
+    		android:key="Pref_TimeToRecord_List"
+    		android:title="@string/Pref_TimeToRecord_Title"
+    		android:summary="@string/Pref_TimeToRecord_Summary"
+    		android:entries="@array/TimeRecoding_entries"
+    		android:entryValues="@array/TimeRecoding_values"
+    		android:dialogTitle="@string/Pref_TimeToRecord_Dialog_Title"
+    		android:defaultValue="15000">
+    		<!-- defaulValue=> the value from entryValues that want to be default value-->
+    	</ListPreference>
+    </PreferenceCategory>
+</PreferenceScreen>

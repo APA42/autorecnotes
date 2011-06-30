@@ -1,0 +1,28 @@
+****************************
+* versionCode = 1          *
+* versionName = 1.0.0 Beta *
+****************************
++) First Release 		   
+
+****************************
+* versionCode = 2          *
+* versionName = 1.0.1 Beta *
+****************************
++) Add a cancel button. App doesn't save the Recorded Note File.
++) Don't show file extension .3GP at Manage Recorded Notes Activity.  
++) UI little changes (icons and some activities layout).
+
+****************************
+* versionCode = 3          *
+* versionName = 1.0.2 Beta *
+****************************
++) Add a Player to listen Recorded Notes
++) Bug fixed reported
+
+
+***************
+* ToDo Future *
+***************
++) Android 1.5
++) Remove red progress bar=>Instead use Notification Bar => Change ServiceRecording
++) Try to store in OGG format
