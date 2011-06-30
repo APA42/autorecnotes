@@ -301,8 +301,12 @@ public class ServiceRecorder extends Service
 			_timer.purge();
 			_timer = null;
 		}
-		_timerTask.cancel();
-		_timerTask = null;
+		// This part must be the first error report (10/06/2011)
+		if (_timerTask != null)
+		{
+			_timerTask.cancel();
+			_timerTask = null;
+		}
 		_handler = null;
 		
 		

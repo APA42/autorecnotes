@@ -73,7 +73,8 @@
     <string name="RENAME_ERROR">Can\'t rename the note</string>
     <string name="RENAME_NEWNAME_EXIST">Already exists</string>
     <string name="RENAME_NO_VALID_NAME">New name is not valid</string>
-    
+    <string name="NO_RECORDEDNOTE_TO_PLAY">No Recorded Note received to play</string>
+    <string name="CANNOT_CREATE_MEDIAPLAYER">Can\'t play the Recorded Note</string>
     <!-- About -->
     <string name="AboutActivity">About... AutoRecNotes</string>
     <string name="About.Version">Version</string>

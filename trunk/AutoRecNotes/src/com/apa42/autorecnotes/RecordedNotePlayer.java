@@ -53,49 +53,33 @@ public class RecordedNotePlayer extends Activity
 			//
 			if ( null == _mediaPlayer )
 			{
-				if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "run()=> Great Fail. This case must not happen" );
+				if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "run()=> Fail: This case must not happen" );
 				return;
 			}
 			
 			int actualPosition = 0;
 			final int totalPosition = _mediaPlayer.getDuration();
-			//while ( _playing  && null != _mediaPlayer && actualPosition < totalPosition )
 			while ( _playing  && actualPosition < totalPosition )
 			{
 				try
 				{
-					Thread.sleep(500);	// wait 0,5 second
-					//Thread.sleep(1000);
-					if ( null == _mediaPlayer )
-					{
-						if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "run()=> It's NULL......" );
-					}
-					else
+					//Thread.sleep(500);	// wait 0,5 second
+					if ( null != _mediaPlayer )
 					{
 						actualPosition = _mediaPlayer.getCurrentPosition();
+						// Update ProgressBar
+						_progressBarPlayer.setProgress(actualPosition);
 					}
 				}				
-//				catch(InterruptedException e)
-//				{
-//					//if (ConfigAppValues.DEBUG) Log.e(CLASS_NAME, "updateProgressBarPlayer FAILS: " + e.getMessage());				
-//	                //e.printStackTrace();
-//					// If change orientation of device=> will receive this exception
-//	                return;
-//				}
 				catch(Exception e)
 				{
 					if (ConfigAppValues.DEBUG) Log.e(CLASS_NAME, "updateProgressBarPlayer FAILS: " + e.getMessage());				
 	                e.printStackTrace();
 	                return;
 				}
-				
-				// Update ProgressBar
-				_progressBarPlayer.setProgress(actualPosition);
 			}
 		}
 	};
-	
-	
 	
 	final private MediaPlayer.OnCompletionListener _mediaPlayerCompleteListener  = new MediaPlayer.OnCompletionListener() 
 	{
@@ -104,8 +88,9 @@ public class RecordedNotePlayer extends Activity
 		{
 			if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onCompletion(MediaPlayer mp)" );
 			//
-			//mp.release();
-			stopPlayingAndExit();
+			stopPlaying();
+			// exit
+			finish();
 		}
 	};
 
@@ -124,12 +109,19 @@ public class RecordedNotePlayer extends Activity
 		if ( null == data )
 		{
 			// No file to play 
-			Toast.makeText(getApplicationContext(), "Data File recieved", Toast.LENGTH_SHORT).show();
+			Toast.makeText(getApplicationContext(), getResources().getString(R.string.NO_RECORDEDNOTE_TO_PLAY), Toast.LENGTH_SHORT).show();
 			finish();
-		}		
-		_playing = false;
+			return;
+		}	
+		// Get the name of the RecordedNote
+		if ( null != getIntent().getExtras() )
+		{
+			String aux = getIntent().getExtras().getString(ConfigAppValues.RECORDEDNOTE_NAME);
+			setTitle(aux);
+			setTitleColor(getResources().getColor(R.color.LimeGreen));
+		}
+		// Set color for progress bar
 		_progressBarPlayer = (ProgressBar) findViewById(R.id.progressBarPlayer);
-		  // Set color for progress bar
 		_progressBarPlayer.setProgressDrawable(getResources().getDrawable(R.drawable.progressbar_greenandroid));
 		// Let's play		
 		playRecordedNote(data);
@@ -143,9 +135,8 @@ public class RecordedNotePlayer extends Activity
 		if (_playing)
 		{
 			// Activity have to destroy=>if we're playing a recorded note have to stop
-			stopPlayingAndExit();
+			stopPlaying();
 		}
-		//
 		super.onDestroy();
 	}
 
@@ -213,7 +204,7 @@ public class RecordedNotePlayer extends Activity
 		
 		if ( null != _mediaPlayer && _mediaPlayer.isPlaying() )
 		{
-			if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "playRecordedNote()=>NULL: Playing" );
+			if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "playRecordedNote()=>Playing..." );
 			// Nothing to do, still playing a recordednote
 			return;
 		}
@@ -221,6 +212,8 @@ public class RecordedNotePlayer extends Activity
 		_mediaPlayer = MediaPlayer.create(RecordedNotePlayer.this, recordedNoteToPlay);
 		if ( null == _mediaPlayer )
 		{
+			Toast.makeText(getApplicationContext(), getResources().getString(R.string.CANNOT_CREATE_MEDIAPLAYER), Toast.LENGTH_SHORT).show();
+			finish();
 			return;
 		}
 		//
@@ -245,57 +238,49 @@ public class RecordedNotePlayer extends Activity
 		} 
 	}
 	
-	private void stopPlayingAndExit()
+	private void stopPlaying()
 	{
-		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "stopPlayingAndExit()" );
+		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "stopPlaying()" );
 		//
 		_playing = false;
 		
 		if ( null != _mediaPlayer )
 		{
-			if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "stopPlayingAndExit()=>Releases mediaPlayer" );
+			if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "stopPlaying()=>Release mediaPlayer" );
 			//
 			_mediaPlayer.release();
 			_mediaPlayer = null;
 		}
-		finish();
 	}	
 	
-	public void onClickPauseResume(View arg)
+	public void onClickBtnPauseResume(View arg)
 	{
-		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onClickPauseResume(View arg)" );
+		if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "onClickBtnPauseResume(View arg)" );
 		//
-		/////Toast.makeText(getApplicationContext(), "click", Toast.LENGTH_SHORT).show();
 		if ( _playing )
 		{
-			if ( null != this._mediaPlayer )
+			if ( null != _mediaPlayer )
 			{
 				try
 				{
-					if ( _pause )
-					{
-						_mediaPlayer.start();
-					}
-					else
-					{
-						_mediaPlayer.pause();
-					}
-					_pause = !_pause;
 					// Change background image
 					Button btnAux = (Button) findViewById(R.id.btn_PauseResume);
 					if ( _pause )
 					{
-						btnAux.setBackgroundDrawable(getResources().getDrawable(android.R.drawable.ic_media_play));
+						_mediaPlayer.start();
+						btnAux.setBackgroundDrawable(getResources().getDrawable(android.R.drawable.ic_media_pause));
 					}
 					else
 					{
-						btnAux.setBackgroundDrawable(getResources().getDrawable(android.R.drawable.ic_media_pause));
+						_mediaPlayer.pause();
+						btnAux.setBackgroundDrawable(getResources().getDrawable(android.R.drawable.ic_media_play));
 					}
-					
+					// store option
+					_pause = !_pause;
 				}
 				catch(IllegalStateException	e)
 				{
-					if (ConfigAppValues.DEBUG) Log.e(CLASS_NAME, "onClickPauseResume()=>pause/resume FAILS: " + e.getMessage());				
+					if (ConfigAppValues.DEBUG) Log.e(CLASS_NAME, "onClickBtnPauseResume()=>pause/resume FAILS: " + e.getMessage());				
 					e.printStackTrace();
 				}
 			}

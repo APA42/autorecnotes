@@ -21,7 +21,7 @@ package com.apa42.autorecnotes;
 
 public class ConfigAppValues
 {
-	public static final boolean DEBUG = true;
+	public static final boolean DEBUG = false;
 	// Preferences
 	public static final String PREF_KEY_ALWAYS_RECORD = "Pref_AlwaysRecord";	
 	public static final String PREF_KEY_TIMETORECORD_LIST = "Pref_TimeToRecord_List";
@@ -41,4 +41,6 @@ public class ConfigAppValues
 	public static final int SERVICE_RECORDER_STOP_NOMEDIARECORDER = -42;
 	// User cancel recording note service=>don't save the recordednote
 	public static final String SERVICE_CANCELED_BY_THE_USER = "SERVICE_CANCELED_BY_THE_USER";
+	// to pass recorded note name to other activity
+	public static final String RECORDEDNOTE_NAME = "RECORDEDNOTE_NAME"; 
 }

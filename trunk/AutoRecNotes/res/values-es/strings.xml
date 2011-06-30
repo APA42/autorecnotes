@@ -73,6 +73,8 @@
     <string name="RENAME_ERROR">No se ha podido renombrar la nota</string>
 	<string name="RENAME_NEWNAME_EXIST">Ya existe</string>
 	<string name="RENAME_NO_VALID_NAME">Nuevo nombre no es válido</string>
+    <string name="NO_RECORDEDNOTE_TO_PLAY">No se ha recibido ninguna nota grabada para reproducir</string>	
+    <string name="CANNOT_CREATE_MEDIAPLAYER">No se puede reproducir la nota grabada</string>	
     <!-- About -->
     <string name="AboutActivity">Acerca de... AutoRecNotes</string>
     <string name="About.Version">Versión</string>

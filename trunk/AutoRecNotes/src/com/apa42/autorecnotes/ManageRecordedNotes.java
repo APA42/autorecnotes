@@ -244,10 +244,17 @@ public class ManageRecordedNotes extends ListActivity
 			
 			if (ConfigAppValues.DEBUG) Log.d(CLASS_NAME, "playRecordedNote==>uri data: " + data);
 			
+			// Old code=> at samsung movile don't work correctly :-(
+			//
 			//Intent iplayIntent = new Intent(android.content.Intent.ACTION_VIEW);
 			//iplayIntent.setDataAndType(data,"audio/mp3");
+			//
+			// Let's play
 			Intent iplayerIntent = new Intent(ManageRecordedNotes.this,RecordedNotePlayer.class);
 			iplayerIntent.setData(data);
+			// Send RecordedNote Name
+	    	String recordedNoteName = ((RecordedNote)this.getListAdapter().getItem((int)indexRecordedNote)).getFileName();
+			iplayerIntent.putExtra(ConfigAppValues.RECORDEDNOTE_NAME, recordedNoteName);
 			
 			try
 			{
