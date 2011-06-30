@@ -17,13 +17,14 @@
     You should have received a copy of the GNU General Public License
     along with AutoRecNotes.  If not, see <http://www.gnu.org/licenses/>.
 -->
-
+ 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   	android:layout_width="fill_parent"
   	android:layout_height="fill_parent">
   	<ProgressBar 
   		android:id="@+id/progressBarPlayer"
         style="?android:attr/progressBarStyleHorizontal"
+        android:layout_alignParentTop="true"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
  		android:layout_marginLeft="4sp"
@@ -31,10 +32,7 @@
         android:max="100" 
         android:progress="0" 
         android:visibility="gone"
-        android:paddingTop="5sp"
-        android:paddingBottom="4sp"
-        android:paddingLeft="4sp"
-        android:paddingRight="4sp">
+        android:padding="5sp">
 	</ProgressBar>
 	<Button
 		android:id="@+id/btn_PauseResume"
@@ -46,6 +44,7 @@
         android:layout_alignParentRight="true"
 		android:background="@android:drawable/ic_media_pause"
 		android:clickable="true"
-		android:onClick="onClickPauseResume">
+		android:onClick="onClickBtnPauseResume">
 	</Button>
 </RelativeLayout>
+ 

@@ -12,11 +12,17 @@
 +) Don't show file extension .3GP at Manage Recorded Notes Activity.  
 +) UI little changes (icons and some activities layout).
 
+****************************
+* versionCode = 3          *
+* versionName = 1.0.2 Beta *
+****************************
++) Add a Player to listen Recorded Notes
++) Bug fixed reported
+
 
 ***************
 * ToDo Future *
 ***************
 +) Android 1.5
 +) Remove red progress bar=>Instead use Notification Bar => Change ServiceRecording
-+) Play Recorded Notes by myself=>don't use external player
 +) Try to store in OGG format
